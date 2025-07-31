@@ -48,19 +48,19 @@
 ### 🎵 **Audio Synthesis**
 ![Audio Synthesis](./assets/feature_audio_synthesis.png)
 - Music generation with MusicGen
-- Text-to-speech with voice cloning
-- Sound effects and ambient audio
-- Professional audio synchronization
+- Speech synthesis with XTTS-v2 and Bark
+- Professional audio enhancement
+- Multi-language support
 
 </td>
 <td width="50%">
 
 ### 🧊 **3D Generation**
 ![3D Generation](./assets/feature_3d_generation.png)
-- Text and image to 3D models
-- Multiple output formats (GLB, PLY, OBJ)
-- High-quality mesh generation
-- Texture and material synthesis
+- Wonder3D and Hunyuan3D models
+- Text-to-3D and image-to-3D
+- Multiple output formats
+- Professional quality meshes
 
 </td>
 </tr>
@@ -68,302 +68,288 @@
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### One-Line Installation
 
-- Python 3.8 or higher
-- [Claude Code CLI](https://claude.ai/code) installed
-- [Replicate API key](https://replicate.com/account/api-tokens)
+```bash
+curl -sSL https://raw.githubusercontent.com/danielfleuren/replicate-mcp/main/scripts/install.sh | bash
+```
 
-### Installation
+### Manual Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Nuptul/replicate-mcp.git
+   git clone https://github.com/danielfleuren/replicate-mcp.git
    cd replicate-mcp
    ```
 
-2. **Run the automated installer**
+2. **Run the installer**
    ```bash
    ./scripts/install.sh
    ```
 
-3. **Configure your API key**
-   ```bash
-   export REPLICATE_API_TOKEN="your_api_key_here"
-   ```
+3. **Add your API key** when prompted
 
-4. **Test the installation**
-   ```bash
-   python scripts/test_installation.py
-   ```
+That's it! Restart Claude Code and start creating. 🎉
 
-That's it! 🎉 The Replicate MCP is now ready to use with Claude Code.
+## 🎯 Usage Examples
 
-## 📖 Usage
-
-### Basic Image Generation
+### Basic Commands
 
 ```python
-# Generate a professional logo
-await generate_image(
-    prompt="modern tech startup logo, minimalist design",
-    model="black-forest-labs/flux-1.1-pro",
-    width=512,
-    height=512
-)
+# Generate an image
+"Create a professional logo for my tech startup"
+
+# Upscale an image
+"Upscale this image to 4K resolution"
+
+# Generate a video
+"Create a 5-second video of a rocket launching"
+
+# Generate music
+"Create a 30-second upbeat electronic track"
 ```
 
 ### Advanced Workflows
 
 ```python
-# Complete brand video creation
-from replicate_mcp import WorkflowOrchestrator
+# Logo-to-brand video workflow
+"Create a complete brand package with logo and promotional video"
 
-orchestrator = WorkflowOrchestrator()
-result = await orchestrator.execute_workflow(
-    "logo_to_brand_video",
-    brand_name="MyStartup",
-    style="professional tech"
-)
+# Character animation workflow
+"Create an animated character that waves hello"
+
+# Product showcase workflow
+"Create a professional product showcase video with music"
 ```
 
-### Claude Code Integration
+## 📋 Available Models
 
-The MCP automatically integrates with Claude Code. Simply use natural language:
+<details>
+<summary><b>🎨 Image Generation (20+ models)</b></summary>
 
-```
-"Create a professional logo for my tech startup, then generate a 10-second promotional video with background music"
-```
+- **FLUX Pro/Dev/Schnell** - State-of-the-art image generation
+- **SDXL & Lightning** - Fast, high-quality images
+- **Ideogram** - Text rendering specialist
+- **Instant ID** - Face-consistent generation
+- **Photo Maker** - Realistic photo generation
+- **Face to Sticker** - Convert faces to stickers
+- **ReVision** - Reference-based generation
 
-## 🛠️ Available Models
+</details>
 
-### Image Generation (20+ Models)
-- **FLUX 1.1 Pro** - Ultimate quality ($0.055/image)
-- **FLUX Schnell** - Fast generation ($0.003/image)  
-- **SDXL Lightning** - 4-step speed ($0.001/image)
-- **Recraft V3** - SVG and vector graphics
+<details>
+<summary><b>🎬 Video Generation (10+ models)</b></summary>
 
-### Video Generation (10+ Models)
-- **Google Veo 3** - Flagship quality ($0.30/video)
-- **Hailuo 2** - Realistic physics ($0.25/video)
-- **WAN 2.2** - Fast generation ($0.05/video)
+- **Google Veo** - Professional video creation
+- **Hailuo AI** - Creative video synthesis
+- **LTX Video** - Long-form video generation
+- **Seedance** - Dance video generation
+- **AnyV2V** - Video-to-video transformation
+- **Reframe Video** - Aspect ratio conversion
 
-### Audio Generation (8+ Models)
-- **MusicGen** - Professional music ($0.008/track)
-- **Bark** - Emotional TTS ($0.001/speech)
-- **XTTS v2** - Voice cloning ($0.002/speech)
+</details>
 
-### Enhancement Tools (15+ Models)
-- **Real-ESRGAN** - Image upscaling
+<details>
+<summary><b>🎵 Audio Generation (8+ models)</b></summary>
+
+- **MusicGen** - Music composition
+- **MAGNeT** - Advanced music generation
+- **Bark** - Realistic speech synthesis
+- **XTTS-v2** - Multilingual TTS
+- **MMAudio** - Video soundtrack generation
+- **AudioLM** - Natural audio synthesis
+
+</details>
+
+<details>
+<summary><b>🧊 3D Generation (5+ models)</b></summary>
+
+- **Wonder3D** - Image-to-3D conversion
+- **Hunyuan3D** - Text-to-3D generation
+- **TripoSR** - Single image 3D reconstruction
+- **Zero123** - 3D object generation
+- **DreamGaussian** - Fast 3D generation
+
+</details>
+
+<details>
+<summary><b>🔧 Enhancement Tools (15+ models)</b></summary>
+
+- **Clarity Upscaler** - 10x resolution enhancement
 - **CodeFormer** - Face restoration
-- **RemBG** - Background removal
-- **DDColor** - Colorization
+- **GFPGAN** - Face enhancement
+- **RealESRGAN** - General image upscaling
+- **DeOldify** - Photo colorization
+- **DDColor** - Dual-decoder colorization
+- **Remove Background** - Automatic background removal
 
-## 🏗️ Architecture
+</details>
 
-```mermaid
-graph LR
-    A[Claude Code] --> B[MCP Server]
-    B --> C[Replicate API]
-    B --> D[Model Catalog]
-    B --> E[Workflow Engine]
-    C --> F[50+ AI Models]
-    E --> G[Professional Workflows]
-```
+## 🔄 Professional Workflows
 
-## 📚 Documentation
+### 1. Logo-to-Brand Video
+Transform a simple logo into a complete brand package:
+- Logo enhancement and variations
+- Animated logo intro
+- Brand colors extraction
+- Promotional video with music
+- Social media assets
 
-- [**Installation Guide**](./docs/installation.md) - Detailed setup instructions
-- [**Model Reference**](./docs/models.md) - Complete model catalog and capabilities
-- [**Workflow Guide**](./docs/workflows.md) - Professional workflow templates
-- [**API Reference**](./docs/api.md) - Complete API documentation
-- [**Best Practices**](./docs/best-practices.md) - Optimization and cost management
-- [**Troubleshooting**](./docs/troubleshooting.md) - Common issues and solutions
+### 2. Character Animation
+Create consistent animated characters:
+- Character design from description
+- Multiple pose generation
+- Smooth animation sequences
+- Background integration
+- Voice synthesis
 
-## 🎯 Professional Workflows
+### 3. Product Showcase
+Professional product presentations:
+- Product photography enhancement
+- 360° rotation videos
+- Feature highlight animations
+- Background music generation
+- Multi-format export
 
-### Logo to Brand Video
-Create complete brand videos from concept to production:
-1. Generate professional logos (SVG + PNG)
-2. Create brand imagery and backgrounds
-3. Produce animated promotional videos
-4. Add synchronized background music
-5. Output multi-platform formats
+### 4. Social Media Content
+Optimized content for all platforms:
+- Platform-specific aspect ratios
+- Animated text overlays
+- Trending style adaptation
+- Batch generation
+- A/B testing variants
 
-### Character Animation
-Develop consistent character animations:
-1. Design unique characters
-2. Generate multiple poses and expressions
-3. Create smooth animation sequences
-4. Add voice synthesis and lip-sync
-5. Export in multiple formats
-
-### Product Showcase
-Professional product demonstrations:
-1. Generate high-quality product renders
-2. Create 360-degree view sequences
-3. Produce marketing videos
-4. Add professional voiceovers
-5. Optimize for various platforms
-
-## 💰 Cost Optimization
-
-Built-in budget management and optimization:
-
-- **Smart Model Selection** - Automatic cost-quality balancing
-- **Batch Processing** - 30-50% cost savings on bulk operations
-- **Tiered Generation** - Draft → Review → Production workflow
-- **Real-time Tracking** - Monitor spending and ROI
-- **Budget Alerts** - Prevent overruns with intelligent warnings
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details.
-
-### Development Setup
-
-1. **Fork and clone**
-   ```bash
-   git clone https://github.com/yourusername/replicate-mcp.git
-   cd replicate-mcp
-   ```
-
-2. **Install development dependencies**
-   ```bash
-   pip install -e ".[dev]"
-   ```
-
-3. **Run tests**
-   ```bash
-   pytest tests/
-   ```
-
-## 📈 Performance
-
-- **Response Time**: <2 seconds for most operations
-- **Success Rate**: 99.5% generation success
-- **Cost Efficiency**: 60% savings through optimization
-- **Quality**: Professional-grade outputs
-- **Scalability**: Handles enterprise workloads
-
-## 🔧 Advanced Configuration
+## 🛠️ Configuration
 
 ### Environment Variables
 
 ```bash
 # Required
-REPLICATE_API_TOKEN="your_token_here"
+export REPLICATE_API_TOKEN="your_token_here"
 
 # Optional
-REPLICATE_BUDGET_LIMIT="100.0"          # Monthly budget limit
-REPLICATE_CACHE_ENABLED="true"          # Enable result caching
-REPLICATE_QUALITY_PREFERENCE="balanced"  # quality|speed|cost
-REPLICATE_LOG_LEVEL="INFO"              # DEBUG|INFO|WARNING|ERROR
+export REPLICATE_BUDGET_LIMIT="100.0"          # Monthly budget ($)
+export REPLICATE_QUALITY_PREFERENCE="balanced" # quality|speed|cost
+export REPLICATE_CACHE_ENABLED="true"          # Result caching
 ```
 
-### Custom Model Configuration
+### MCP Settings
 
-```python
-# Add custom models
-from replicate_mcp import ModelCatalog
+The configuration is automatically handled by the installer.
 
-catalog = ModelCatalog()
-catalog.add_model({
-    "id": "custom/model",
-    "name": "Custom Model",
-    "capabilities": ["text2img"],
-    "cost_per_run": 0.01
-})
+Location by platform:
+- **Linux**: `~/.config/claude-code/mcp_settings.json`
+- **macOS**: `~/Library/Application Support/claude-code/mcp_settings.json`
+- **Windows**: `%APPDATA%/claude-code/mcp_settings.json`
+
+## 📊 Budget Management
+
+### Cost Optimization
+
+- **Smart Model Selection**: Automatically chooses cost-effective models
+- **Budget Tracking**: Real-time spending monitoring
+- **Usage Analytics**: Detailed cost breakdowns
+- **Warnings**: Alerts before budget limits
+
+### Pricing Examples
+
+| Task | Model | Approximate Cost |
+|------|-------|------------------|
+| Logo Generation | FLUX Schnell | $0.003 |
+| 4K Upscaling | Clarity Upscaler | $0.022 |
+| 5-sec Video | LTX Video | $0.045 |
+| 30-sec Music | MusicGen | $0.008 |
+| 3D Model | Wonder3D | $0.036 |
+
+## 🧪 Testing
+
+### Run Installation Tests
+```bash
+python scripts/test_installation.py
 ```
 
-## 🏢 Enterprise Features
+### Test Specific Models
+```bash
+python scripts/test_models.py --category image
+```
 
-- **Multi-tenant Support** - Isolated workspaces
-- **SSO Integration** - Enterprise authentication
-- **Audit Logging** - Complete operation tracking
-- **SLA Guarantees** - 99.9% uptime commitment
-- **Priority Support** - Dedicated technical assistance
-- **Custom Workflows** - Tailored business processes
+### Verify Workflows
+```bash
+python scripts/test_workflows.py
+```
 
-## 📞 Support
+## 🔧 Troubleshooting
 
-- **Documentation**: [docs/](./docs/)
-- **Issues**: [GitHub Issues](https://github.com/Nuptul/replicate-mcp/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/Nuptul/replicate-mcp/discussions)
-- **Email**: daniel@example.com (for Enterprise support)
+### Common Issues
 
-## 🏆 Testimonials
+<details>
+<summary><b>MCP Server Not Loading</b></summary>
 
-> *"Replicate MCP transformed our content creation workflow. We're generating professional brand assets 10x faster than before."*  
-> — **Sarah Chen**, Creative Director at TechFlow
+1. Restart Claude Code
+2. Check configuration path
+3. Verify API key is set
+4. Run installation test
 
-> *"The budget optimization features saved our startup 60% on AI generation costs while maintaining premium quality."*  
-> — **Marcus Rodriguez**, CTO at InnovateAI
+</details>
 
-> *"Integration was seamless. Within 5 minutes, our team was creating professional videos and animations."*  
-> — **Emily Watson**, Product Manager at DesignCorp
+<details>
+<summary><b>Model Errors</b></summary>
 
-## 📊 Stats
+1. Check model availability
+2. Verify API limits
+3. Try alternative model
+4. Check error logs
 
-<div align="center">
+</details>
 
-| Metric | Value |
-|--------|-------|
-| **Models Supported** | 50+ |
-| **Generation Success Rate** | 99.5% |
-| **Average Cost Savings** | 60% |
-| **Active Users** | 10,000+ |
-| **Assets Generated** | 1M+ |
-| **Enterprise Clients** | 100+ |
+<details>
+<summary><b>Performance Issues</b></summary>
 
-</div>
+1. Enable caching
+2. Use faster models
+3. Reduce output resolution
+4. Check network speed
 
-## 🗺️ Roadmap
+</details>
 
-### Q1 2025
-- [ ] Real-time collaboration features
-- [ ] Advanced workflow templates
-- [ ] Mobile app integration
-- [ ] Enhanced 3D capabilities
+## 🤝 Contributing
 
-### Q2 2025
-- [ ] Multi-language support
-- [ ] Advanced AI training tools
-- [ ] Blockchain asset verification
-- [ ] AR/VR content generation
+We welcome contributions! See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines.
 
-### Q3 2025
-- [ ] Enterprise SSO integration
-- [ ] Advanced analytics dashboard
-- [ ] Custom model training
-- [ ] API marketplace
+### Areas for Contribution
 
-## 🎖️ Awards & Recognition
+- New model integrations
+- Workflow templates
+- Performance optimizations
+- Documentation improvements
+- Bug fixes
 
-- **🏆 2024 AI Innovation Award** - Best Media Generation Tool
-- **🌟 GitHub Trending** - #1 in AI category (Dec 2024)
-- **🚀 Product Hunt** - #2 Product of the Day
-- **💎 MCP Excellence Award** - Outstanding Integration
+## 📄 License
 
-## 📜 License
-
-MIT License - see [LICENSE](./LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ## 🙏 Acknowledgments
 
-- **Anthropic** - For the amazing Claude Code platform and MCP framework
-- **Replicate** - For providing access to cutting-edge AI models
-- **Open Source Community** - For continuous support and contributions
-- **Beta Testers** - For invaluable feedback and testing
+- **Replicate** for the amazing AI models
+- **Anthropic** for Claude and MCP
+- **Community** for feedback and contributions
+- **Daniel Fleuren** for professional design and branding
+
+## 📞 Support
+
+- 📖 [Documentation](docs/)
+- 💬 [GitHub Discussions](https://github.com/danielfleuren/replicate-mcp/discussions)
+- 🐛 [Issue Tracker](https://github.com/danielfleuren/replicate-mcp/issues)
+- ✉️ Email: daniel@example.com
 
 ---
 
 <div align="center">
 
-**Made with ❤️ by [Daniel Fleuren](https://github.com/danielfleuren)**
+**Ready to create amazing AI media?** 🚀
 
-*Empowering creativity through AI*
+[Get Started](docs/quickstart.md) | [View Examples](examples/) | [Read Docs](docs/)
 
-[⭐ Star this project](https://github.com/Nuptul/replicate-mcp) if you find it useful!
+*Powered by Replicate API and Claude MCP*
 
 </div>
